@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedDims = document.getElementById('dimensions').value.split('x');
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
-
+            debugger;
             // FINAL CORRECTED LINE: The call is directly on the main object
             ccEverywhere.createDesign({
                 input: {
