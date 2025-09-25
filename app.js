@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedDims = document.getElementById('dimensions').value.split('x');
         const width = parseInt(selectedDims[0]);
         const height = parseInt(selectedDims[1]);
-debugger;
+        debugger;
         // Launch the Adobe Express editor with the user's selected options
         ccEverywhere.editor.createDesign({
             input: {
