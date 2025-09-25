@@ -18,28 +18,20 @@
     <script src="https://cc-embed.adobe.com/sdk/v4/CCEverywhere.js"></script>
 
     <script>
-        // This is a special block to catch any hidden errors
         try {
-            // Find the button on the page
             const testButton = document.getElementById('testBtn');
             let ccEverywhere;
 
-            // This async function initializes the SDK
             async function initializeSDK() {
-                console.log("Attempting to initialize SDK...");
                 ccEverywhere = await window.CCEverywhere.initialize({
                     clientId: '0ddc19366347489ab01b9b476e76c779',
                     appName: 'Project 2',
                 });
-                console.log("SDK initialization finished. The main object is:", ccEverywhere);
-                console.log("The 'editor' part is:", ccEverywhere.editor);
             }
 
-            // Set up the button's click event
             testButton.addEventListener('click', () => {
-                console.log("Button clicked. Trying to open editor...");
-                // Launch the editor
-                ccEverywhere.editor.createDesign({
+                // CORRECTED LINE: The .editor part has been removed.
+                ccEverywhere.createDesign({
                     input: {
                         asset: {
                             width: 1080,
@@ -52,11 +44,9 @@
                 });
             });
 
-            // Run the initialization
             initializeSDK();
 
         } catch (e) {
-            // If any error happens anywhere, it will be caught and displayed here
             console.error("A critical error occurred:", e);
         }
     </script>
