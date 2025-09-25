@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             ccEverywhere = await window.CCEverywhere.initialize(
                 {
-                    clientId: '0ddc19366347489ab01b9b476e76c779',
+                    clientId: '0ddc19366347489ab01b9b476e76c779', // replace with your client ID if needed
                     appName: 'Project 2',
                 },
                 {
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
 
-            // Launch Adobe Express Editor with pre-filled config
-            ccEverywhere.openEditor({
+            // Correct v4 API: use launch() instead of openEditor()
+            ccEverywhere.launch({
                 config: {
                     dimensions: { width, height },
                     elements: [
