@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 clientId: '0ddc19366347489ab01b9b476e76c779',
                 appName: 'Project 2',
             },
+            console.log("SDK Initialized:", ccEverywhere);
             // 2. Callbacks: These are functions that run when certain events happen
             {
                 callbacks: {
