@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function initializeSDK() {
         try {
-            console.log("Attempting to initialize SDK...");
             ccEverywhere = await window.CCEverywhere.initialize({
                 clientId: '0ddc19366347489ab01b9b476e76c779',
                 appName: 'Project 2',
@@ -28,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                 },
             });
-            console.log("SDK Initialized Successfully.");
         } catch (e) {
             console.error("SDK Initialization Failed:", e);
         }
@@ -40,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     generateButton.addEventListener('click', () => {
         if (!ccEverywhere) {
-            console.error("SDK is not ready yet. Please wait a moment and try again.");
+            alert("SDK is not ready yet. Please wait a moment and try again.");
             return;
         }
 
@@ -49,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedDims = document.getElementById('dimensions').value.split('x');
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
-            debugger;
+
             // FINAL CORRECTED LINE: The call is directly on the main object
             ccEverywhere.createDesign({
                 input: {
