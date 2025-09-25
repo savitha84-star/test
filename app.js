@@ -50,7 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
 
-            ccEverywhere.editor.createDesign({
+            // FINAL CORRECTED LINE: The call is directly on the main object
+            ccEverywhere.createDesign({
                 input: {
                     asset: {
                         width: width,
