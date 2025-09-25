@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ccEverywhere = await window.CCEverywhere.initialize(
                 {
                     clientId: '0ddc19366347489ab01b9b476e76c779', // Replace with your API Key
-                    appName: 'Project 2', // Must match your Adobe project name
+                    appName: 'Project 2',
                 },
                 {
                     callbacks: {
@@ -14,22 +14,20 @@ document.addEventListener('DOMContentLoaded', () => {
                             const resultContainer = document.getElementById('result-container');
                             resultContainer.innerHTML = '<h2>Your Creative is Ready!</h2>';
 
-                            // Download link
                             const downloadLink = document.createElement('a');
                             downloadLink.href = publishParams.asset.data;
                             downloadLink.download = 'my-creative.jpeg';
                             downloadLink.innerText = '➡️ Download Image';
                             resultContainer.appendChild(downloadLink);
 
-                            // Edit later link
                             const editLink = `https://express.adobe.com/project/${publishParams.projectId}/`;
                             const editAnchor = document.createElement('a');
                             editAnchor.href = editLink;
                             editAnchor.target = '_blank';
                             editAnchor.innerText = '✏️ Edit this project again later';
                             resultContainer.appendChild(editAnchor);
-                        },
-                    },
+                        }
+                    }
                 }
             );
         } catch (e) {
@@ -53,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
 
-            // Launch editor via editor object
+            // Launch Adobe Express editor
             ccEverywhere.editor.launch({
                 config: {
                     dimensions: { width, height },
