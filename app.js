@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             ccEverywhere = await window.CCEverywhere.initialize(
                 {
-                    clientId: '0ddc19366347489ab01b9b476e76c779', // replace with your client ID if needed
+                    clientId: '0ddc19366347489ab01b9b476e76c779', // Replace with your client ID if needed
                     appName: 'Project 2',
                 },
                 {
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const generateButton = document.getElementById('generateBtn');
 
-    generateButton.addEventListener('click', () => {
+    generateButton.addEventListener('click', async () => {
         if (!ccEverywhere) {
             alert("SDK is not ready yet. Please wait a moment and try again.");
             return;
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
 
-            // Correct v4 API: use launch() instead of openEditor()
-            ccEverywhere.launch({
+            // ✅ Correct way: create an editor instance, then launch
+            const editor = await ccEverywhere.createEditor({
                 config: {
                     dimensions: { width, height },
                     elements: [
@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     ]
                 }
             });
+
+            editor.launch();
+
         } catch (e) {
             console.error("Error launching editor:", e);
         }
