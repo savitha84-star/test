@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ccEverywhere = await window.CCEverywhere.initialize(
                 {
                     clientId: '0ddc19366347489ab01b9b476e76c779', // Replace with your API Key
-                    appName: 'Project 2',
+                    appName: 'Project 2', // Must match your Adobe project name
                 },
                 {
                     callbacks: {
@@ -49,4 +49,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const titleText = document.getElementById('title').value;
-            const selectedDims = document.getElementById('dimensions').value.split
+            const selectedDims = document.getElementById('dimensions').value.split('x');
+            const width = parseInt(selectedDims[0]);
+            const height = parseInt(selectedDims[1]);
+
+            // Launch editor via editor object
+            ccEverywhere.editor.launch({
+                config: {
+                    dimensions: { width, height },
+                    elements: [
+                        {
+                            type: "text",
+                            text: titleText,
+                            style: { fontSize: 72 }
+                        }
+                    ]
+                }
+            });
+        } catch (e) {
+            console.error("Error launching editor:", e);
+        }
+    });
+});
