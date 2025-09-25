@@ -3,30 +3,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function initializeSDK() {
         try {
-            ccEverywhere = await window.CCEverywhere.initialize({
-                clientId: '0ddc19366347489ab01b9b476e76c779',
-                appName: 'Project 2',
-            }, {
-                callbacks: {
-                    onPublish: (publishParams) => {
-                        const resultContainer = document.getElementById('result-container');
-                        resultContainer.innerHTML = '<h2>Your Creative is Ready!</h2>';
-
-                        const downloadLink = document.createElement('a');
-                        downloadLink.href = publishParams.asset.data;
-                        downloadLink.download = 'my-creative.jpeg';
-                        downloadLink.innerText = '➡️ Download Image';
-                        resultContainer.appendChild(downloadLink);
-
-                        const editLink = `https://express.adobe.com/project/${publishParams.projectId}/`;
-                        const editAnchor = document.createElement('a');
-                        editAnchor.href = editLink;
-                        editAnchor.target = '_blank';
-                        editAnchor.innerText = '✏️ Edit this project again later';
-                        resultContainer.appendChild(editAnchor);
-                    },
+            ccEverywhere = await window.CCEverywhere.initialize(
+                {
+                    clientId: '0ddc19366347489ab01b9b476e76c779',
+                    appName: 'Project 2',
                 },
-            });
+                {
+                    callbacks: {
+                        onPublish: (publishParams) => {
+                            const resultContainer = document.getElementById('result-container');
+                            resultContainer.innerHTML = '<h2>Your Creative is Ready!</h2>';
+
+                            // Download link
+                            const downloadLink = document.createElement('a');
+                            downloadLink.href = publishParams.asset.data;
+                            downloadLink.download = 'my-creative.jpeg';
+                            downloadLink.innerText = '➡️ Download Image';
+                            resultContainer.appendChild(downloadLink);
+
+                            // Edit later link
+                            const editLink = `https://express.adobe.com/project/${publishParams.projectId}/`;
+                            const editAnchor = document.createElement('a');
+                            editAnchor.href = editLink;
+                            editAnchor.target = '_blank';
+                            editAnchor.innerText = '✏️ Edit this project again later';
+                            resultContainer.appendChild(editAnchor);
+                        },
+                    },
+                }
+            );
         } catch (e) {
             console.error("SDK Initialization Failed:", e);
         }
@@ -48,26 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const width = parseInt(selectedDims[0]);
             const height = parseInt(selectedDims[1]);
 
-            // FINAL CORRECTED LINE: The call is directly on the main object
-            ccEverywhere.createDesign({
-                input: {
-                    asset: {
-                        width: width,
-                        height: height,
-                        type: "image"
-                    },
-                    elements: [{
-                        type: "text",
-                        content: titleText,
-                        style: { fontSize: 72 }
-                    }]
-                },
-                output: {
-                    projectFormat: "project:id"
+            // Launch Adobe Express Editor with pre-filled config
+            ccEverywhere.openEditor({
+                config: {
+                    dimensions: { width, height },
+                    elements: [
+                        {
+                            type: "text",
+                            text: titleText,
+                            style: { fontSize: 72 }
+                        }
+                    ]
                 }
             });
         } catch (e) {
-            console.error("Error creating design:", e);
+            console.error("Error launching editor:", e);
         }
     });
 });
