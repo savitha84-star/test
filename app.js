@@ -53,9 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
     generateButton.addEventListener('click', () => {
         // When the button is clicked, get the current values from the form
         const titleText = document.getElementById('title').value;
-        // When the button is clicked, get the current values from the form
-    const titleText = document.getElementById('title').value;
-    //
         const selectedDims = document.getElementById('dimensions').value.split('x'); // Turns "1080x1080" into an array ["1080", "1080"]
         const width = parseInt(selectedDims[0]);
         const height = parseInt(selectedDims[1]);
