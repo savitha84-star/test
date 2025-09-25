@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 clientId: '0ddc19366347489ab01b9b476e76c779',
                 appName: 'Project 2',
             },
-            console.log("SDK Initialized:", ccEverywhere);
             // 2. Callbacks: These are functions that run when certain events happen
             {
                 callbacks: {
@@ -54,19 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
     generateButton.addEventListener('click', () => {
         // When the button is clicked, get the current values from the form
         const titleText = document.getElementById('title').value;
-        const selectedDims = document.getElementById('dimensions').value.split('x'); // Turns "1080x1080" into an array ["1080", "1080"]
+        const selectedDims = document.getElementById('dimensions').value.split('x');
         const width = parseInt(selectedDims[0]);
         const height = parseInt(selectedDims[1]);
 
-        // Launch the Adobe Express editor with the user's selected options
-        ccEverywhere.createDesign({
+        // CORRECTED LINE: Launch the Adobe Express editor using ccEverywhere.editor
+        ccEverywhere.editor.createDesign({
             input: {
                 asset: {
                     width: width,
                     height: height,
                     type: "image"
                 },
-                // We pass the title as a text element on the canvas
                 elements: [
                     {
                         type: "text",
@@ -78,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             output: {
-                // We must request the project ID to be able to create the edit link
                 projectFormat: "project:id"
             }
         });
