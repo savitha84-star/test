@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             ccEverywhere = await window.CCEverywhere.initialize(
                 {
-                    clientId: '0ddc19366347489ab01b9b476e76c779', // Replace with your client ID if needed
+                    clientId: '0ddc19366347489ab01b9b476e76c779', // Replace with your API Key
                     appName: 'Project 2',
                 },
                 {
@@ -42,35 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const generateButton = document.getElementById('generateBtn');
 
     generateButton.addEventListener('click', async () => {
-        if (!ccEverywhere) {
-            alert("SDK is not ready yet. Please wait a moment and try again.");
+        if (!ccEverywhere || !ccEverywhere.editor) {
+            alert("SDK not ready yet. Please wait a moment and try again.");
             return;
         }
 
         try {
             const titleText = document.getElementById('title').value;
-            const selectedDims = document.getElementById('dimensions').value.split('x');
-            const width = parseInt(selectedDims[0]);
-            const height = parseInt(selectedDims[1]);
-
-            // ✅ Correct way: create an editor instance, then launch
-            const editor = await ccEverywhere.createEditor({
-                config: {
-                    dimensions: { width, height },
-                    elements: [
-                        {
-                            type: "text",
-                            text: titleText,
-                            style: { fontSize: 72 }
-                        }
-                    ]
-                }
-            });
-
-            editor.launch();
-
-        } catch (e) {
-            console.error("Error launching editor:", e);
-        }
-    });
-});
+            const selectedDims = document.getElementById('dimensions').value.split
